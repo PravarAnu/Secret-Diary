@@ -22,9 +22,9 @@ export const isLoggedIn = asyncHandler( async (req, res, next)=>{
     try{
         const decodedToken = JWT.verify(token, config.JWT_SECRET);
 
-        const user = await User.findById(decodedToken._id, "name, email, role");
+        const founduser = await User.findById(decodedToken._id, "name, email, role");
 
-        req["user"] = user;
+        req["user"] = founduser;
 
         next();
     }catch (e){
