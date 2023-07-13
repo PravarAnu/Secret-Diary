@@ -11,9 +11,9 @@ const router = Router();
 router.post("/signUp", SignUp);
 router.post("/logIn", LogIn);
 router.post("/logOut", LogOut);
-router.post("/password/reset", isLoggedIn, ResetPassword);
+router.post("/password/reset",isLoggedIn, ResetPassword);
 
-router.get("/profile", isLoggedIn, GetProfile);
+router.get("/profile", GetProfile);
 
 
 export default router;

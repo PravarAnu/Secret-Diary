@@ -22,13 +22,13 @@ export const SignUp = asyncHandler(async (req, res)=>{
         throw new customError("User already existed", 400);
     }
 
-    const user = User.create({
+    const user = await User.create({
         name,
         email,
         password
     })
 
-    const token = user.getJWTtoken();
+    const token = await user.getJWTtoken();
 
     user.password = undefined;
     res.cookie("token", token, cookieOptions);
@@ -96,7 +96,7 @@ export const ResetPassword = asyncHandler(async (req, res)=>{
         throw new customError("Please provide all details", 400);
     }
 
-    const user = User.findOne({email}).select("+password");
+    const user = await User.findOne({email}).select("+password");
 
     if(!user){
         throw new customError("No user found", 400);
